@@ -1,8 +1,8 @@
 <template>
-  <div id="particles-js">
-    <nav>
+  <div>
+    <!--<nav>
         <button id="btnConectarWallet" class="btn" @click="contractConnect">Connet Wallet</button>
-    </nav>
+    </nav>-->
     <main>
       <Nuxt />
     </main>
@@ -61,15 +61,6 @@
                 }
             }
         },
-        mounted() {
-            // Jquery Plugins e Particle Js
-            //$('nav div[role="itemmenu"]').mouseenter(function(){   $(this).find('a').shuffleLetters();  });
-            $("#particles-js").length && particlesJS("particles-js", { particles: {number: {value: 28},  color: {                                value: ["#0182cc", "#edc711", "#0182cc"]                            },                            shape: {                                type: "circle"                            },                            opacity: {                                value: 1,                                random: !1,                                anim: {                                    enable: !1                                }                            },                            size: {                                value: 3,                                random: !0,                                anim: {                                    enable: !1                                }                            },                            line_linked: {                                enable: !1                            },                            move: {                                enable: !0,                                speed: 2,                                direction: "none",                                random: !0,                                straight: !1,                                out_mode: "out"                            }                        },                        interactivity: {                            detect_on: "canvas",                            events: {                                onhover: {                                    enable: !1                                },                                onclick: {                                    enable: !1                                },                                resize: !0                            }                        },                        retina_detect: !0                    });        
-            // Hocks Web3
-            //      Mudou de rede
-            // window.ethereum.on('networkChanged', function(networkId){
-            //   console.log('networkChanged',networkId);
-            // });
-        }
+        mounted() {}
     }
 </script>

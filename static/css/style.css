@@ -1,0 +1,66 @@
+.proximo-ataque{
+    background-image: url(../game/proximo-ataque.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.mercado-link{
+    background-image: url(../game/mercado-link.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.mercado-link:before{
+    content: "";
+    width: 80px;
+    margin-top: -100px;
+    height: 115px;
+    display: block;
+    background-image: url(../game/raposa.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.missao-link{
+    background-image: url(../game/missao-link.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.energia-link{
+    background-image: url(../game/energia.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.material-link{
+    background-image: url(../game/material.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.ilhas-link{
+    background-image: url(../game/ilhas.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.marketplace-link{
+    background-image: url(../game/marketplace.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.center{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.pointer{
+    cursor:pointer;
+}
+.cursor-aventure{
+    /* Usando URL e cordenadas */
+    cursor:  url(../game/cursor16x16.png) 4 12, auto;
+    cursor:  url(../game/cursor16x16.png) 2 2, pointer;
+}
