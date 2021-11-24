@@ -2,7 +2,7 @@
  
 # Exchange
 
-![Tela inicial](./game.png)
+![Tela inicial](./game.gif)
 
 ## Build Setup
 

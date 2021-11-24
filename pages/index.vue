@@ -51,7 +51,7 @@
     </div>
     <!-- Game engine  -->
     <div id="game">
-        <GameCanvas/>
+        <Game/>
     </div>
   </div>
 </template>

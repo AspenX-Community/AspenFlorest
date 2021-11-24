@@ -58,7 +58,11 @@ export default {
   modules: [],//["nuxt-web3"],
   
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: [
+      "three"
+    ],
+  },
   
   loading: {
     color: '#00c58e',
