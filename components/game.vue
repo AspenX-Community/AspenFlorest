@@ -7,6 +7,10 @@
     import * as THREE from 'three'
     import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
     var world = {};
+    var TIPOS = {
+        GRAMA:  1,
+        ARVORE: 2,
+    };
     export default {
         data() {
             return {
@@ -79,7 +83,7 @@
                     let cube = new THREE.Mesh( geometry, material_grama );
                     cube.position.x = i;
                     cube.position.y = j;
-                    world[cube.uuid] = cube;
+                    world[cube.id] = {object:cube,tipo:TIPOS.GRAMA};
                     scene.add( cube );
                 }
             }
@@ -95,20 +99,73 @@
                 mouse.y = - ( (event.clientY - bounds.top) / gameRender.clientHeight ) * 2 + 1;
                 raycaster.setFromCamera( mouse, camera );
                 var intersects = raycaster.intersectObjects(scene.children, true);
-                console.log(intersects);
-                if (intersects.length > 0) {
-                    intersects[ 0 ].object.material = material_grama_selection_faces;
+                
+                let objeto_selecionado = {};
+                if( intersects.length > 0) {
+                    
+                    objeto_selecionado = world[intersects[ 0 ].object.id]
+
+                    switch(objeto_selecionado.tipo){
+                        case TIPOS.GRAMA:
+                            objeto_selecionado.object.material = material_grama_selection_faces;
+                            break;
+                        case TIPOS.ARVORE:
+                            if(intersects[0].distance < 5.38)intersects.splice(1).forEach(intersec=>{
+
+                                if(world[intersec.object.id].tipo == TIPOS.GRAMA){
+                                    intersec.object.material = material_grama_selection_faces;
+                                    objeto_selecionado = world[intersec.object.id];
+                                }
+
+                            })
+                            break;
+                        default:
+                            if(typeof intersects[1] != "undefined" &&
+                               world[intersects[ 1 ].object.id].tipo == TIPOS.GRAMA){
+                                intersects[ 1 ].object.material = material_grama_selection_faces;
+                            }
+                    }
                     Object.keys(world).forEach(object=>{
-                        if(object != intersects[ 0 ].object.uuid){
-                            world[object].material = material_grama;
+
+                        if( world[object].tipo == TIPOS.GRAMA && 
+                            object != objeto_selecionado.object.id){
+                            world[object].object.material = material_grama;
                         }
+
                     })
-                }
+                    //object != intersects[ 0 ].object.id && 
+                // Limpando selecao
+                }else Object.keys(world).forEach(object=>{
+                    if(world[object].tipo == TIPOS.GRAMA ){
+                        world[object].object.material = material_grama;
+                    }
+                })
             };
 
             gameRender.addEventListener('mouseover', selection, false)
             gameRender.addEventListener( 'click', selection, false)
             gameRender.addEventListener( 'mousemove', selection, false)
+
+            //Arvores
+            var texture_arvore = new THREE.TextureLoader().load( `${ require(`~/static/game/carvalho.png`) }` );
+            const geometryPlano = new THREE.PlaneGeometry(1.3, 4);
+            
+            const material = new THREE.MeshBasicMaterial({
+                map: texture_arvore,
+                opacity: 0.75,
+                transparent: true,
+            });
+            const mesh = new THREE.Mesh( geometryPlano, material );
+            
+            mesh.position.x = 0;
+            mesh.position.y = 0;
+            mesh.position.z = 2;
+            
+            console.log(mesh.rotation)
+            mesh.rotation.x += 1.6;
+            mesh.rotation.y += 0.9;
+            world[mesh.id] = { object: mesh, tipo: TIPOS.ARVORE};
+            scene.add( mesh );
         }
     }
 </script>
