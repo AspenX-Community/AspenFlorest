@@ -2,7 +2,6 @@
     --primary-color-active:  rgb(38, 203, 124);
     --primary-color: #00c58e;
 }
-
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
@@ -14,6 +13,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 nav{
     height: auto;

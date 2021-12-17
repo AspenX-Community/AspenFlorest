@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'exchange',
+    title: 'AspenFlorest',
     htmlAttrs: {
       lang: 'pt'
     },
@@ -20,6 +20,11 @@ export default {
         src: "/icons/elegant/style.css",
         async: true,
         type: "text/css"
+      },
+      { 
+        src: "https://fonts.googleapis.com/css2?family=Roboto&display=swap",
+        async: false,
+        type: "text/css"
       }
     ],
     script:[
@@ -28,25 +33,19 @@ export default {
         async: true,
         type: "text/javascript"
       },
-      /*{
-        src: "/js/shuffleLetters.js",
-        async: true,
-        type: "text/javascript",
-        defer: true
-      },*/
-      /*{
-        src: "/js/particles.js",
-        type: "text/javascript",
-        async: true,
-        defer: true
-      }*/
+      {
+        src: "//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js",
+        async: false,
+        type: "text/javascript"
+      },
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['static/css/index.css','static/css/animate.css', 'static/css/style.css'],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['plugins/ethers.js'],///['plugins/web3.js'],
+  plugins: [{ src: 'plugins/ethers.client.js', mode:  'client' },
+            { src: 'plugins/game.client.js', mode:  'client' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -63,7 +62,6 @@ export default {
       "three"
     ],
   },
-  
   loading: {
     color: '#00c58e',
     height: '6px',

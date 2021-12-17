@@ -1,5 +1,5 @@
 .proximo-ataque{
-    background-image: url(../game/proximo-ataque.png);
+    background-image: url(../game/proximo-ataque02.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -51,6 +51,24 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+.resize-link{
+    background-image: url(../game/resize2.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.remover-link{
+    background-image: url(../game/remover.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.mochila-link{
+    background-image: url(../game/cartera.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 .center{
     margin-left: auto;
     margin-right: auto;
@@ -63,4 +81,12 @@
     /* Usando URL e cordenadas */
     cursor:  url(../game/cursor16x16.png) 4 12, auto;
     cursor:  url(../game/cursor16x16.png) 2 2, pointer;
+}
+.movendo-cursor{
+    cursor:  url(../game/cursor-resize.png) 4 12, auto;
+    cursor:  url(../game/cursor-resize.png) 2 2, pointer;
+}
+.removendo-cursor{
+    cursor:  url(../game/cursor-remover.png) 4 12, auto;
+    cursor:  url(../game/cursor-remover.png) 2 2, pointer;
 }

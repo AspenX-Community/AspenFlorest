@@ -6,7 +6,14 @@
         <!-- Controles Esquerdos (link para o mercado, missoes e info sobre os ataques)-->
         <div class="controles-esquerda">
             <!-- info do proximo ataque -->
-            <div class="controles-esquerda-proximo-ataque proximo-ataque"></div>
+            <div class="controles-esquerda-proximo-ataque proximo-ataque">
+                <div class="controles-esquerda-proximo-ataque-label">
+                    Proximo ataque em:
+                </div>
+                <div class="controles-esquerda-proximo-ataque-value">
+                    {{ proximo_ataque_label }}
+                </div>
+            </div>
             <!-- link para o mercado e para as missoes -->
             <div class="controles-esquerda-links">
                 <!-- link para o mercado e para a rapoza -->
@@ -21,25 +28,46 @@
         <div class="controles-direita">
             <!-- visualizacao energia -->
             <div class="controles-direita-energia energia-link center pointer">
-                <!-- visualizacao qauntidade energia -->
+                <!-- visualizacao quantidade energia -->
                 <div>100</div>
             </div>
-            <!-- visualizacao material -->
-            <div class="controles-direita-material material-link center pointer">
-                <!-- visualizacao quantidade de material -->
-                <div>100</div>
-            </div>
+
             <!-- ferramentas (deixa pra depois por falta de material)-->
             <div class="controles-direita-ferramentas">
                 <!-- item -->
-                <div>
-                    <!-- imagem item -->
-                    <div>
+                <div class="controles-direita-ferramentas-item">
+                    <!-- label item -->
+                    <div class="controles-direita-ferramentas-item-label">
+                        Daily
                     </div>
-                    <!-- quantidade item -->
-                    <div>
+                    <!-- value item -->
+                    <div class="controles-direita-ferramentas-item-value">
+                        {{ geracao.diario.toFixed(2) }}
                     </div>
                 </div>
+                <div class="controles-direita-ferramentas-item">
+                    <!-- label item -->
+                    <div class="controles-direita-ferramentas-item-label">
+                        Monthly
+                    </div>
+                    <!-- value item -->
+                    <div class="controles-direita-ferramentas-item-value">
+                        {{ geracao.mensal.toFixed(1) }}
+                    </div>
+                </div>
+                <div class="controles-direita-ferramentas-item">
+                    <!-- label item -->
+                    <div class="controles-direita-ferramentas-item-label">
+                        Mined
+                    </div>
+                    <!-- value item -->
+                    <div class="controles-direita-ferramentas-item-value">
+                        {{ geracao.minerado.toFixed(1) }}
+                    </div>
+                </div>
+                <button class="controles-direita-ferramentas-button pointer">
+                    claim
+                </button>
             </div>
             <!-- Ilhas -->
             <div class="controles-direita-ilhas ilhas-link center pointer">
@@ -51,11 +79,94 @@
     </div>
     <!-- Game engine  -->
     <div id="game">
-        <Game/>
+        <client-only>
+            <Game/>
+        </client-only>
     </div>
   </div>
 </template>
+<script>
+    export default {
+        asyncData() {
+            return {
+                proximo_ataque: new Date('2022-01-01 12:00:00'),
+                proximo_ataque_label:'00:00:00',
+                geracao:{
+                    diario: 0,
+                    mensal: 0,
+                    minerado: 0,
+                }
+            }
+        },
+        beforeMount() {
+            this.$nuxt.$on('acconts-change', (dados) => { 
+                //let nonce = this.$Web3.toHash('hello world');
+                this.$Web3.getSigner().signMessage(nonce).then(result=>{
+                })
+            });
+
+            let moment_proximo_ataque = moment(this.proximo_ataque);
+            setInterval(()=>{
+              let diff = moment_proximo_ataque.diff( moment(new Date()) );
+              this.proximo_ataque_label = Math.floor(moment.duration(diff).asHours()) + moment.utc( diff ).format(":mm:ss");
+            },1800)
+            
+        },
+    }
+</script>
 <style>
+    .controles-direita-ferramentas-button{
+        display: block;
+        width: 84%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 12px;
+        background-color: #6bc31b;
+        outline: unset;
+        border: unset;
+        color: white;
+        font-weight: bold;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 1s;
+    }
+    .controles-direita-ferramentas-button:hover{
+        background-color: #1bc36e;
+        transition: all 1s;
+    }
+    .controles-direita-ferramentas{
+        background-color: #202540;
+        border-radius: 4px 4px 4px 4px;
+        padding: 4px 0px 9px 0px;
+        margin-bottom: 6px;
+        margin-top: 4px;
+    }
+    .controles-direita-ferramentas-item{}
+    .controles-direita-ferramentas-item-label{
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        font-size: 0.83rem;
+        padding-top: 3px;
+        margin-bottom: 3px;
+    }
+    .controles-direita-ferramentas-item-value{
+        text-align: center;
+        background-color: rgb(84, 92, 143);
+        color: white;
+        font-weight: bold;
+        font-size:0.7rem;
+        border-radius: 2px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 3px;
+        padding-bottom: 2px;
+        width: 85%;
+    }
     #controles{
         z-index: 2;
     }
@@ -133,28 +244,25 @@
         z-index: 0;
         background-color: #d7faf5;
     }
-    #game canvas{
+    #game canvas,#game .canvas{
         width: 100%;
         height: 100vh;
     }
-</style>
-<script>
-    export default {
-        asyncData() {
-            return { }
-        },
-        beforeMount() {
-            this.$nuxt.$on('acconts-change', (dados) => { 
-                console.log("Hello!",dados)
-                console.log(this.$Web3.ethers.utils);
-                console.log(this.$Web3.ethers.utils.arrayify)
-                
-                let nonce = this.$Web3.toHash('hello world');
-                console.log("NONCE: ",nonce);
-                this.$Web3.getSigner().signMessage(nonce).then(result=>
-                    console.log("signMessage: ",result))
-
-            });
-        }
+    .controles-esquerda-proximo-ataque{
+        padding: 9px 57px 9px 10px;
     }
-</script>
+    .controles-esquerda-proximo-ataque-label{
+        color:#eee;
+        font-size: 0.6rem;
+        font-weight: bold;
+    }
+    .controles-esquerda-proximo-ataque-value{
+        color: #eee;
+        font-size: 1.2rem;
+        text-align: center;
+        padding-top: 3px;
+    }
+    .controles-direita-ferramentas-button{
+
+    }
+</style>
