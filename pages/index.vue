@@ -1,5 +1,4 @@
 <template>
-
   <div class="cursor-aventure">
     <!-- Controles  -->
     <div id="controles">
@@ -16,12 +15,14 @@
             </div>
             <!-- link para o mercado e para as missoes -->
             <div class="controles-esquerda-links">
+                <showMercado v-if="showMercado" @emit-close="showMercado = !showMercado"/>
                 <!-- link para o mercado e para a rapoza -->
-                <div class="controles-esquerda-links-mercado mercado-link pointer">
+                <div @click="showMercado = !showMercado" class="controles-esquerda-links-mercado mercado-link pointer">
                 </div>
-                <!-- link mercado -->
-                <div class="controles-esquerda-links-missao missao-link pointer">
+                <!-- link missoes -->
+                <div @click="showMissoes = !showMissoes" class="controles-esquerda-links-missao missao-link pointer">
                 </div>
+                <showMissoes v-if="showMissoes" @emit-close="showMissoes = !showMissoes"/>
             </div>
         </div>
         <!-- Controles Direitos (Info sobre a conta)-->
@@ -65,16 +66,18 @@
                         {{ geracao.minerado.toFixed(1) }}
                     </div>
                 </div>
-                <button class="controles-direita-ferramentas-button pointer">
+                <button @click="showClaim()" class="controles-direita-ferramentas-button pointer">
                     claim
                 </button>
             </div>
             <!-- Ilhas -->
-            <div class="controles-direita-ilhas ilhas-link center pointer">
+            <div @click="showIlhas = !showIlhas" class="controles-direita-ilhas ilhas-link center pointer">
             </div>
+            <showIlhas v-if="showIlhas" @emit-close="showIlhas = !showIlhas"/>
             <!-- Marketplace -->
-            <div class="controles-direita-marketplace marketplace-link center pointer">
+            <div @click="showMarketplace = !showMarketplace" class="controles-direita-marketplace marketplace-link center pointer">
             </div>
+            <showMarketplace v-if="showMarketplace" @emit-close="showMarketplace = !showMarketplace"/>
         </div>
     </div>
     <!-- Game engine  -->
@@ -89,7 +92,12 @@
     export default {
         asyncData() {
             return {
-                proximo_ataque: new Date('2022-01-01 12:00:00'),
+                showMissoes: false,
+                showClaim: false,
+                showIlhas: false,
+                showMercado: false,
+                showMarketplace:false,
+                proximo_ataque: new Date('2022-12-01 12:00:00'),
                 proximo_ataque_label:'00:00:00',
                 geracao:{
                     diario: 0,
@@ -97,6 +105,8 @@
                     minerado: 0,
                 }
             }
+        },
+        methods:{
         },
         beforeMount() {
             this.$nuxt.$on('acconts-change', (dados) => { 
@@ -139,7 +149,7 @@
         transition: all 1s;
     }
     .controles-direita-ferramentas{
-        background-color: #202540;
+        background-color: #65ac2e;
         border-radius: 4px 4px 4px 4px;
         padding: 4px 0px 9px 0px;
         margin-bottom: 6px;
@@ -156,7 +166,7 @@
     }
     .controles-direita-ferramentas-item-value{
         text-align: center;
-        background-color: rgb(84, 92, 143);
+        background-color: #3e9d52;
         color: white;
         font-weight: bold;
         font-size:0.7rem;

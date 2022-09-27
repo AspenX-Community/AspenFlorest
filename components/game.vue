@@ -68,7 +68,7 @@
               this.movendo.listener.push(index);
 
 
-            }, 400);
+            }, 340);
 
              // Removendo todos os indices
             this.removendo.listener.forEach(indice=>{
