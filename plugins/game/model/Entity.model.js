@@ -8,6 +8,7 @@ export default class Entity {
     _nome = "";
     _descrisao = "";
     _produtividade = 0;
+    _efetividade = 0; 
     _icon ="";
     _selecionavel = false;
     _movivel = false;

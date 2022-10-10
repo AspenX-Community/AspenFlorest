@@ -10,6 +10,7 @@
       </div>
     </div>
     <mochila v-if="showModal" :listItems="items" @emit-adicionar="colocarNoJogo" @emit-close="showModal = !showModal"></mochila>
+    <info v-if="showInfoEntity" :entity="infoEntity" />
   </div>
 </template>
 <script>
@@ -19,6 +20,8 @@
             return {
                 acconts:null,
                 items:[],
+                infoEntity:{},
+                showInfoEntity:false,
                 movendo:{
                   status:false,
                   listener:[]
@@ -43,7 +46,7 @@
             setTimeout(()=>{
 
               let index = this.$Game.onSelecionar((objeto,prioridade)=>{
-
+                console.log(objeto)
                 if(objeto.entity.movivel)return;
 
 
@@ -162,7 +165,23 @@
               this.$Game.resize( window.innerWidth, window.innerHeight);
               
             });
-           
+            
+            this.$Game.onSelecionar((objeto,prioridade)=>{
+
+                
+                if(objeto.entity.produtividade < 1)return;
+
+                
+                console.log(objeto)
+                this.infoEntity = objeto.entity;
+                this.showInfoEntity = true;
+
+                //objeto.figure.position.x;
+                //objeto.figure.position.y;
+
+                
+
+            });
         }
     }
 </script>

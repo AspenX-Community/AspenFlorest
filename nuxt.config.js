@@ -15,12 +15,12 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     css:[
-      {
+      /*{
         
         src: "/icons/elegant/style.css",
-        async: true,
+        async: false,
         type: "text/css"
-      },
+      },*/
       { 
         src: "https://fonts.googleapis.com/css2?family=Roboto&display=swap",
         async: false,
@@ -42,7 +42,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['static/css/index.css','static/css/animate.css', 'static/css/style.css'],
+  css: ['static/css/index.css','static/css/animate.css', 'static/css/style.css', "static/icons/elegant/style.css"],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [{ src: 'plugins/ethers.client.js', mode:  'client' },
             { src: 'plugins/game.client.js', mode:  'client' }],

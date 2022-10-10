@@ -154,6 +154,7 @@
         padding: 4px 0px 9px 0px;
         margin-bottom: 6px;
         margin-top: 4px;
+        margin-right: 3px;
     }
     .controles-direita-ferramentas-item{}
     .controles-direita-ferramentas-item-label{

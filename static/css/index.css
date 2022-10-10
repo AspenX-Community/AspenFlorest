@@ -43,19 +43,17 @@ nav{
     padding: 6px 8px;
 }
 .btn{
-    font-size: 14px;
-    line-height: 55px;
+    font-size: 1.1em;
     color: #fff;
+    cursor: pointer;
     text-transform: uppercase;
     font-weight: bold;
-    height: 55px;
-    padding: 0 55px;
+    padding: 10px 27px;
     border-radius: 4px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     display: inline-block;
-    background-image: -webkit-gradient(linear, left top, right top, from(#3967f5), color-stop(51%, #77f3fd), to(#3967f5));
-    background-image: linear-gradient(to right, #f5b339 0%, #ff8b0f 51%, #fffa02 100%);
+    background: #368ad9;
     border: none;
     outline: none;
     background-size: 200%;
@@ -64,5 +62,8 @@ nav{
     -webkit-transition: all 500ms ease;
     -ms-transition: all 500ms ease;
     -o-transition: all 500ms ease;
+}
+.btn:hover{
+    background: #0a81f0;
 }
 

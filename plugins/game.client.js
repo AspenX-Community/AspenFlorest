@@ -113,8 +113,8 @@ let plugin = {}; plugin.install = function (Vue, options) {
                 if(selecionado.entity.selecionavel){
 
                     selecionado.figure.material = MODEL.buildMaterialSelecionavel(selecionado.entity, loader, scopo)
-
-                }else{
+                    
+                } else {
                     if(intersects[0].distance < 5.39){
 
                         for(let intersec of intersects.splice(1)){

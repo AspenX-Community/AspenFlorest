@@ -100,16 +100,25 @@
 }
 
 .modal-default-button {
-		display: block;
-		background-color: #202540;
-		outline: unset;
-		border: unset;
-		color: white;
-		font-weight: bold;
-		padding: 4px 10px;
-		border-radius: 4px;
-		font-size: 0.8rem;
-		cursor: pointer;
+	display: block;
+	padding: 0.25rem 0.36rem 0.25rem 0.36rem;
+	font-size: 0.87em;
+	border-radius: 3px;
+	cursor: pointer;
+	background-color: #dddddd;
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#fdfdfd),color-stop(100%,#dddddd));
+	background: -webkit-linear-gradient(#fdfdfd,#dddddd);
+	background: -moz-linear-gradient(#fdfdfd,#dddddd);
+	background: -ms-linear-gradient(#fdfdfd,#dddddd);
+	background: -o-linear-gradient(#fdfdfd,#dddddd);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#dddddd');
+	-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#dddddd');
+	background: linear-gradient(#fdfdfd,#dddddd);
+	outline: 0;
+	border: 1px solid #9d9d9d;
+	color: #000000;
+	text-shadow: 0 -1px 2px rgba(255,255,255,0.5);
+	font-weight: bold;
 }
 
 .modal-enter {
