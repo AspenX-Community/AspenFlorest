@@ -12,6 +12,7 @@ export default class Entity {
     _icon ="";
     _selecionavel = false;
     _movivel = false;
+    _usavel = false;
     _position = new Position(0, 0, 0);
     _rotation = new Rotation( 0, 0, 0);
 
@@ -46,7 +47,13 @@ export default class Entity {
     get produtividade() {
         return this._produtividade;
     }
-
+    
+    set efetividade( efetividade ) {
+        this._efetividade = efetividade;    
+    }
+    get efetividade() {
+        return this._efetividade;
+    }
     set position( position ) {
         this._position = position;    
     }
@@ -71,6 +78,10 @@ export default class Entity {
     get movivel(){
         return this._movivel;
     }
+    get usavel(){
+        return this._usavel;
+    }
+    
     get icon(){
         return this._icon;
     }

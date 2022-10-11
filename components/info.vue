@@ -4,7 +4,8 @@
         <div class="infoEntityImg">
             <div class="infoEntityProdutivity">
                 <template v-for="star in (entity.produtividade*5)">
-                    <span  data-icon=""></span>
+                    <span v-if="(entity.efetividade*5*entity.produtividade) >= star" data-icon=""></span>
+                    <span v-else data-icon="" class="vazio"></span>
                 </template>
             </div>
             <img :src="entity.icon" alt="" title=""> 
@@ -12,7 +13,7 @@
         <div class="infoEntityDesc"> {{ entity.descrisao }} </div>
         <div class="infoEntityDesc"> 
             <button data-icon="1" class="btn"> Guardar </button>
-            <button data-icon="I" class="btn"> Usar </button>
+            <button v-if="entity.usuavel||true" data-icon="I" class="btn"> Usar </button>
         </div>
     </div>
 </template>
@@ -27,6 +28,20 @@
     }
 </script>
 <style>
+    .infoEntityProdutivity{
+        position: relative;
+        margin-top: -8px;
+        max-width: 223px;
+        display: block;
+        word-break: break-word;
+        overflow: auto;
+    }
+    .infoEntityProdutivity span{
+        color: rgb(0, 255,0);
+    }
+    .infoEntityProdutivity span.vazio{
+        color: rgb(255 255 255);
+    }
     .infoEntity{
         position: absolute;
         min-width: 138px;
@@ -67,9 +82,16 @@
         vertical-align: baseline;
     }
     .infoEntityDesc{
+        min-width: 240px;
         font-weight: 700;
 		padding: 7px 10px 5px 9px;
 		font-size: 0.6rem;
         word-break: break-word;
+    }
+    .infoEntityDesc button{
+        display: inline-block;
+        margin-left: auto;
+        float: right;
+        margin: 0px 2px;
     }
 </style>

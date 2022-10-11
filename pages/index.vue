@@ -71,9 +71,8 @@
                 </button>
             </div>
             <!-- Ilhas -->
-            <div @click="showIlhas = !showIlhas" class="controles-direita-ilhas ilhas-link center pointer">
+            <div @click="" class="controles-direita-ilhas ilhas-link center pointer">
             </div>
-            <showIlhas v-if="showIlhas" @emit-close="showIlhas = !showIlhas"/>
             <!-- Marketplace -->
             <div @click="showMarketplace = !showMarketplace" class="controles-direita-marketplace marketplace-link center pointer">
             </div>
